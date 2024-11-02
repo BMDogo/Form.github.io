@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Page Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <form id="multi-page-form">
+            <!-- Page 1 -->
+            <div class="page active" id="page-1">
+                <h2>Page 1</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <button type="button" id="next-1">Next</button>
+            </div>
+            <!-- Page 2 -->
+            <div class="page" id="page-2">
+                <h2>Page 2</h2>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required></textarea>
+                <button type="button" id="prev-2">Previous</button>
+                <button type="button" id="next-2">Next</button>
+            </div>
+            <!-- Page 3 -->
+            <div class="page" id="page-3">
+                <h2>Page 3</h2>
+                <label for="nationality">Nationality:</label>
+                <input type="text" id="nationality" name="nationality" required>
+                <label for="qualification">Qualification:</label>
+                <textarea id="qualification" name="qualification" required></textarea>
+                <button type="button" id="prev-3">Previous</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
+
+<style type="text/css">
+body {
+    font-family: Arial, sans-serif;
+}
+
+main {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"], input[type="email"], input[type="tel"] {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+button[type="button"], button[type="submit"] {
+    width: 100%;
+    height: 40px;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="button"]:hover, button[type="submit"]:hover {
+    background-color: #3e8e41;
+}
+</style>
+<script type="text/javascript">
+const pages = document.querySelectorAll('.page');
+const form = document.getElementById('multi-page-form');
+
+document.getElementById('next-1').addEventListener('click', () => {
+    pages[0].classList.remove('active');
+    pages[1].classList.add('active');
+});
+
+document.getElementById('prev-2').addEventListener('click', () => {
+    pages[1].classList.remove('active');
+    pages[0].classList.add('active');
+});
+
+document.getElementById('next-2').addEventListener('click', () => {
+    pages[1].classList.remove('active');
+    pages[2].classList.add('active');
+});
+
+document.getElementById('prev-3').addEventListener('click', () => {
+    pages[2].classList.remove('active');
+    pages[1].classList.add('active');
+});
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log('Form submitted!');
+    // Handle form submission here
+});
+</script>
